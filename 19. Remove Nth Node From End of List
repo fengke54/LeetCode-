@@ -1,0 +1,35 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        
+        # put a dummy node, start 1 node before the head node, dummy node moves to the next which is the head node
+        dummy_head = ListNode(-1) 
+        dummy_head.next = head
+        
+        # current node keeps iterating tills the end 
+        # n_pointer moves n_steps away from the current node, creating n-step difference 
+        cur, n_pointer = dummy_head, dummy_head
+             
+        while cur.next != None:
+            
+            # n-step delay for prev_of_removal
+            if n <= 0:
+                n_pointer = n_pointer.next #if n=0, the n_pointer stops, moves together with the cur node.
+                
+            cur = cur.next # if not, cur keeps moving, until n-steps away from n_pointer. When n <=0, n_pointer moves until 1 step ahead of n_node
+            
+            n -=1
+        # Remove the N-th node from end of list
+        n_th_node = n_pointer.next #find n_th node
+        n_pointer.next = n_th_node.next # pointer moves to the next 
+        del n_th_node
+        return dummy_head.next
+        
+
+            
+           
