@@ -1,0 +1,36 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        
+        # finding the minimum buy price and the largest profit. 
+        # assume price[i] is the largest 
+        # init price as zero, and go through the loop 
+  
+        if not prices: 
+            return 0 
+        
+        # init values 
+        profit = 0 
+        buy_price = prices[0]
+        
+        for i in range(len(prices)):
+            if buy_price > prices[i]:
+                buy_price = prices[i]
+            else: 
+                profit = max((prices[i] - buy_price, profit))    
+        return profit 
+    
+# return without indentation. If there is an indent, every value will be executed in this loop. If no indentation, the returned value is the new value entering the loop. 
+    
+"""def calc(numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+print (calc([1,2,4]))
+
+sum loop 1: 1, sum loop 2: 5, sum loop 3: 21...the returned value is 21
+
+if no indentation, return 1, 5, 21. For and return are in the same level, 
+every loop will return with a corresponding value. In ths case, instead of returning 21, this returns 1, 5, and 21. 
+
+"""         
