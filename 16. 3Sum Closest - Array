@@ -1,0 +1,26 @@
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        diff = float('inf') # set the min diff as a really large number
+        nums.sort() # sort the list 
+        for i in range(len(nums)):
+            low, high = i+1, len(nums)-1 
+            while (low < high):
+                sum = nums[i] + nums[low] +nums[high] # it requires three numbers
+                if abs(target - sum) < abs(diff): 
+                    diff = target - sum # sum loops through and gets closer to diff
+                if sum < target: # make sure the pointers are moving 
+                    low += 1
+                else: 
+                    high -= 1
+            if diff == 0: # when there is no difference, break 
+                break
+        return target - diff # target - difference = sum
+    
+"""
+1. sum = diff + target, init diff
+2. sort nums 
+3. confirm two pointers, define low, high, and i
+4. loop through diff until it gets as large as possible, make sure to move the pointers
+5. if diff == 0, break 
+6. return the sum 
+"""
