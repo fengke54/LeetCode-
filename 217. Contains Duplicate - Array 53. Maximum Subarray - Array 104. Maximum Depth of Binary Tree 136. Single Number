@@ -1,0 +1,9 @@
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:    
+        de_dup = []
+        for i in nums:
+            if i not in de_dup:
+                de_dup.append(i) # if number is new, append
+            else:
+                de_dup.remove(i) # not new remove 
+        return de_dup.pop() # pick the left over number
